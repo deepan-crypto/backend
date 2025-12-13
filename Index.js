@@ -40,3 +40,11 @@
 //   }
 // );
 // console.log("Hello after async code");
+
+
+// HTTP Status code
+//1-199 =====>                Informatin
+//200-299 =====>               Successful caws
+//300-399 =====>               Redirect
+//400-499 =====>               Client Error
+//500-599 =====>               Server Error
