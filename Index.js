@@ -49,4 +49,13 @@ const http = require("http");
 //200-299 =====>               Successful caws
 //300-399 =====>               Redirect
 //400-499 =====>               Client Error
-//500-599 =====>               Server Error
+//500-599 =====>        v
+
+// const server=http.createServer((req,res)=>{
+//     console.log(req.url);
+//     res.end(htmlDatta);
+// });
+
+// server.listen(9000,"  ",()=>{
+//     console.log("Server is listening on port 9000");
+// });      
