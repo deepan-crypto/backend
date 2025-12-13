@@ -1,5 +1,5 @@
 // //fs: fileSystem
-// const fs = require("fs");
+const fs = require("fs");
 const http = require("http");
 
 
@@ -62,17 +62,40 @@ const http = require("http");
 
 
 
-//1 . we have to create a server
+// //1 . we have to create a server
 
-const srever=http.createServer((req,res)=>{
-    if(req.url==="/"){
-        res.end("htmlData");
-    }else if(req.url==="/about"){
-        res.end("This is about page");
-    }else if(req.url==="/contact"){
-        res.end("This is contact page");
-    }else{
+// const srever=http.createServer((req,res)=>{
+//     if(req.url==="/"){
+//         res.end("htmlData");
+//     }else if(req.url==="/about"){
+//         res.end("This is about page");
+//     }else if(req.url==="/contact"){
+//         res.end("This is contact page");
+//     }else{
        
-        res.end("Serveer Created using Node js");
+//         res.end("Serveer Created using Node js");
+//     }
+// });
+
+
+const http = require("http");
+const fs = require("fs");
+
+const server = http.createServer((req, res) => {
+
+    if (req.url === "/") {
+        fs.readFile("index.html", "utf-8", (err, data) => {
+            res.end(data);
+        });
+
+    } else if (req.url === "/about") {
+        fs.readFile("data.json", "utf-8", (err, data) => {
+            res.end(data);   // ONLY displaying JSON content
+        });
+
+    } else {
+        res.end("Page Not Found");
     }
 });
+
+server.listen(3000);
