@@ -59,3 +59,20 @@ const http = require("http");
 // server.listen(9000,"  ",()=>{
 //     console.log("Server is listening on port 9000");
 // });      
+
+
+
+//1 . we have to create a server
+
+const srever=http.createServer((req,res)=>{
+    if(req.url==="/"){
+        res.end("htmlData");
+    }else if(req.url==="/about"){
+        res.end("This is about page");
+    }else if(req.url==="/contact"){
+        res.end("This is contact page");
+    }else{
+       
+        res.end("Serveer Created using Node js");
+    }
+});
