@@ -76,7 +76,21 @@ app.put("/api/v1/entry/:id", (req, res) => {
                 
 });
 
-app.delete("/api/v1/entry/:od", (req, res) => {});
+app.delete("/api/v1/entry/:od", (req, res) => {
+    const resId=req.params.id;
+    const restaurant=jsonData.find((el)=>el.id==resId);
+    if(!plant){
+        res.status(404).json({
+            status:"Fail",
+            message:"Please check your entry id",
+        });
+    }
+                res.status(204).json({
+                    status:"Successful",
+                    message:"<> Update Successful <>",
+                });
+                }
+);
 
 
 //crud operation
