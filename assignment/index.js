@@ -3,6 +3,16 @@ const fs = require("fs");
 
 const app = express();
 
+app.use((req, res, next) => {
+const now=new Date();
+req.requestTimeOfHit=now.toLocaleString();
+next();
+}
+);
+app.use((req, res, next) => {
+req.message="Hello";
+  next();
+});
 
 // CONTROLLERS
 const getAllEntry = (req, res) => {
