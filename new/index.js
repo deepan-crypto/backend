@@ -92,14 +92,7 @@ app.delete("/api/v1/entry/:od", (req, res) => {
                 }
 );
 
-
-//crud operation
-//c=creation post
-//r=read get
-//u=update put=>update single attribute and patch=>update everything in database
-//d=delete 
-
-const PORT_NO=9000;
+const PORT_NO=8000;
 app.listen(PORT_NO,()=>{
     console.log("Server started successfully",PORT_NO);
 })
