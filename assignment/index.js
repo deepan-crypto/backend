@@ -1,42 +1,104 @@
 const express = require("express");
-const app = express();
 const fs = require("fs");
 
-app.use(express.json());
-
-const jsonData = JSON.parse(fs.readFileSync("./Menu.json", "utf-8"));
-console.log(JSON.stringify(jsonData, null, 2));
+const app = express();
 
 
-app.get("/api/v1/menu", (req, res) => {
+// CONTROLLERS
+const getAllEntry = (req, res) => {
   res.status(200).json({
     status: "Successful",
     length: jsonData.length,
-    data: {
-      jsonData,
-    },
+    data: jsonData,
   });
-});
+};
 
-app.get("/api/v1/menu/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const menu = jsonData.find((el) => el.id === id);
-
-  if (!menu) {
-    return res.status(404).json({
+const getOneEntry = (req, res) => {
+  console.log(req.params.id);
+  let entry = jsonData.find((el) => el.id === id);
+  if (!entry) {
+    res.status(404).json({
       status: "Fail",
-      message: "Menu item not found",
+      message: "Please check your entry id",
+    });
+  }
+  res.status(200).json({
+    status: "Successful",
+    length: jsonData.length,
+    data: entry,
+  });
+};
+
+const createEntry = (req, res) => {
+  const id = jsonData.length;
+  const entry = OBject.assign({ id: id }, req.body);
+  jsonData.push(entry);
+  fs.writeFileSync("./Stats.json", JSON.stringify(jsonData), "utf-8", (err) => {
+    if (err) {
+      res.status(400).json({
+        status: "Failed to write",
+      });
+    }
+  });
+
+  res.status(201).json({
+    status: "True",
+    data: entry,
+  });
+};
+
+const updateEntry = (req, res) => {
+  const entryId = req.params.id;
+  const entry = jsonData.find((el) => el.id === entryId);
+
+  if (!entry) {
+    res.status(404).json({
+      status: "Fail",
+      message: "Please check your entry id",
     });
   }
 
   res.status(200).json({
-    status: "Successful",
-    data: menu,
+    status: "Success",
+    message: "Update Successful",
   });
+};
+
+const deleteEntry = (req, res) => {
+  const entryId = req.params.id;
+  const entry = jsonData.find((el) => el.id === entryId);
+
+  if (!entry) {
+    res.status(404).json({
+      status: "Fail",
+      message: "Please check your entry id",
+    });
+  }
+
+  res.status(200).json({
+    status: "Success",
+    message: "Update Successful",
+  });
+};
+
+const jsonData = JSON.parse(fs.readFileSync("./Stats.json", "utf-8"));
+console.log(jsonData);
+app.use(express.json());
+
+const PORT_NO = 9000;
+app.listen(PORT_NO, () => {
+  console.log("Server Started at ", PORT_NO);
 });
 
-//Routes
-app.get("/api/v1/menu",getAllMenu);
-app.get("/api/v1/menu/:id",getMenuById);
 
+// ROUTES
+
+app.get("/api/v1/entry", getAllEntry);
+
+app.get("/api/v1/entry':id", getOneEntry);
+
+app.post("/api/v1/entry", createEntry);
+
+app.put("/api/v1/entry/:id", updateEntry);
+
+app.delete("/api/v1/entry/:id", deleteEntry);
