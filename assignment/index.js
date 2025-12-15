@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const app = express();
 
-const jsonData = JSON.parse(fs.readFileSync("./Data.json", "utf-8"));
+const jsonData = JSON.parse(fs.readFileSync("./Menu.json", "utf-8"));
 console.log(jsonData);
 
 app.use(express.json());
