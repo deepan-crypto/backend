@@ -102,6 +102,13 @@ app.listen(PORT_NO, () => {
 
 
 // ROUTES
+const restaurantRouter = express.Router();
+
+restaurantRouter.route("\").get(getAllMenue).post(createMenue);
+
+    restaursantRouter.route("/:id").get(getOneMenue).put(updateMenue).delete(deleteMenue);
+
+
 
 app.get("/api/v1/entry", getAllEntry);
 
