@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Snake Plant",
+    "scientific_name": "Sansevieria trifasciata",
+    "category": "Indoor",
+    "light": "Low to Bright Indirect Light",
+    "water": "Every 2–3 weeks",
+    "temperature": "15–30°C",
+    "image": "/images/plants/snake_plant.jpg",
+    "description": "A hardy indoor plant that purifies air and survives in low-light conditions.",
+    "care_tips": [
+      "Allow soil to dry completely before watering",
+      "Avoid overwatering to prevent root rot",
+      "Can tolerate low light"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Aloe Vera",
+    "scientific_name": "Aloe barbadensis miller",
+    "category": "Indoor / Outdoor",
+    "light": "Bright Indirect Sunlight",
+    "water": "Once every 2 weeks",
+    "temperature": "13–27°C",
+    "image": "/images/plants/aloe_vera.jpg",
+    "description": "A succulent plant known for medicinal gel used for burns and skin care.",
+    "care_tips": [
+      "Use well-draining soil",
+      "Keep in bright light",
+      "Water sparingly"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Money Plant",
+    "scientific_name": "Epipremnum aureum",
+    "category": "Indoor",
+    "light": "Low to Medium Light",
+    "water": "Once a week",
+    "temperature": "18–32°C",
+    "image": "/images/plants/money_plant.jpg",
+    "description": "A popular vine plant believed to bring positive energy and wealth.",
+    "care_tips": [
+      "Mist leaves occasionally",
+      "Trim vines for faster growth",
+      "Avoid direct harsh sunlight"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Areca Palm",
+    "scientific_name": "Dypsis lutescens",
+    "category": "Indoor",
+    "light": "Bright Indirect Light",
+    "water": "Once every 5–7 days",
+    "temperature": "18–28°C",
+    "image": "/images/plants/areca_palm.jpg",
+    "description": "An elegant indoor palm that freshens the air and adds tropical vibes.",
+    "care_tips": [
+      "Keep soil moist but not soggy",
+      "Avoid cold drafts",
+      "Mist leaves for humidity"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Rose",
+    "scientific_name": "Rosa",
+    "category": "Outdoor",
+    "light": "Full Sunlight",
+    "water": "Every 2–3 days",
+    "temperature": "15–30°C",
+    "image": "/images/plants/rose.jpg",
+    "description": "A beautiful flowering plant known for fragrances and vivid colors.",
+    "care_tips": [
+      "Needs 6 hours of direct sunlight",
+      "Use fertilizers during growing season",
+      "Prune regularly"
+    ]
+  }
+]
