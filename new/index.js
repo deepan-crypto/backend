@@ -1,98 +1,49 @@
-const express=require("express");
-const app=express();
-const fs=require("fs");
+const express = require("express");
+const fs = require("fs");
 
-const jsonData=JSON.parse(fs.readFileSync("./plant.json","utf-8"));
+const app = express();
+
+const jsonData = JSON.parse(fs.readFileSync("./Menu.json", "utf-8"));
 console.log(jsonData);
 
-app.get("/api/v1/entry",(req, res)=>{
-    res.status(200).json({
-        status:"Successful",
-        length : jsonData.length,
-        data : {
-            jsonData,
-        }
+app.use(express.json());
+
+const PORT_NO = 9000;
+app.listen(PORT_NO, () => {
+  console.log("Server Started at ", PORT_NO);
+});
+
+app.get("/api/v1/menu", (req, res) => {
+  res.status(200).json({
+    status: "Successful",
+    length: jsonData.length,
+    data: jsonData,
+  });
+});
+
+app.get("/api/v1/menu/:id", (req, res) => {
+  const id = req.params.id;
+  console.log("Requested ID:", id);
+
+  let foundItem;
+
+  jsonData.forEach((section) => {
+    section.card.card.itemCards.forEach((item) => {
+      if (item.card.info.id === id) {
+        foundItem = item.card.info;
+      }
     });
-});
-app.get("/api/v1/entry/:id",(req,res)=>{
-   let id=req.params.id;
-   let entry=jsonData.find((el)=>el.id == id);
-   if(!gym){
-    res.status(404).json({
-        status:"Fail",
-        message:"Please check your entry id",
-    })
-   }
-   res.status(200).json({
-    status:"Successful",
-    gym,
-   })
-});
+  });
 
-
-
-
-app.post("/api/v1/entry", (req, res) => {
-    const id=jsonData.length;
-    const plant=Object.assign({id:id},req.body);
-    jsonData.push(plant);
-    fs.writeFileSync("./plant.json",JSON.stringify(jsonData),"utf-8",(err)=>{
-        if(err){
-
-            res.status(400).json({
-                status:"Failed to writ"
-
-            });
-        }
-        res.status(201).json({
-
-            status:"Truw",
-            data:{
-                plant,
-            }
-        });
+  if (!foundItem) {
+    return res.status(404).json({
+      status: "Fail",
+      message: "Please check your menu id",
     });
-    res.status(201).json({
-        status:"Successful",
-        data:{
-            plant,
-        }
-    });
+  }
+
+  res.status(200).json({
+    status: "Successful",
+    data: foundItem,
+  });
 });
-
-app.put("/api/v1/entry/:id", (req, res) => {
-    const resId=req.params.id;
-    const restaurant=jsonData.find((el)=>el.id==resId);
-    if(!plant){
-        res.status(404).json({
-            status:"Fail",
-            message:"Please check your entry id",
-        });
-    }
-                res.status(204).json({
-                    status:"Successful",
-                    message:"<> Update Successful <>",
-                });
-                
-});
-
-app.delete("/api/v1/entry/:od", (req, res) => {
-    const resId=req.params.id;
-    const restaurant=jsonData.find((el)=>el.id==resId);
-    if(!plant){
-        res.status(404).json({
-            status:"Fail",
-            message:"Please check your entry id",
-        });
-    }
-                res.status(204).json({
-                    status:"Successful",
-                    message:"<> Update Successful <>",
-                });
-                }
-);
-
-const PORT_NO=8000;
-app.listen(PORT_NO,()=>{
-    console.log("Server started successfully",PORT_NO);
-})
