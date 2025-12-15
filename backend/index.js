@@ -28,6 +28,17 @@ app.get("/api/v1/entry/:id",(req,res)=>{
     gym,
    })
 });
+
+
+
+
+app.post("/api/v1/entry", (req, res) => {});
+
+app.put("/api/v1/entry/:id", (req, res) => {});
+
+app.delete("/api/v1/entry/:od", (req, res) => {});
+
+
 //crud operation
 //c=creation post
 //r=read get
