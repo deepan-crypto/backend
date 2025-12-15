@@ -32,7 +32,33 @@ app.get("/api/v1/entry/:id",(req,res)=>{
 
 
 
-app.post("/api/v1/entry", (req, res) => {});
+app.post("/api/v1/entry", (req, res) => {
+    const id=jsonData.length;
+    const plant=Object.assign({id:id},req.body);
+    jsonData.push(plant);
+    fs.writeFileSync("./plant.json",JSON.stringify(jsonData),"utf-8",(err)=>{
+        if(err){
+
+            res.status(400).json({
+                status:"Failed to writ"
+
+            });
+        }
+        res.status(201).json({
+
+            status:"Truw",
+            data:{
+                plant,
+            }
+        });
+    });
+    res.status(201).json({
+        status:"Successful",
+        data:{
+            plant,
+        }
+    });
+});
 
 app.put("/api/v1/entry/:id", (req, res) => {});
 
